@@ -150,12 +150,12 @@ interface IUniswapV2Router02 {
         );
 }
 
-contract Kira is Context, IERC20, Ownable {
+contract Zamol is Context, IERC20, Ownable {
     
     using SafeMath for uint256;
 
-    string private constant _name = "Kira";
-    string private constant _symbol = "KIRA";
+    string private constant _name = "Zamol";
+    string private constant _symbol = "ZML";
     uint8 private constant _decimals = 9;
 
     mapping(address => uint256) private _rOwned;
@@ -399,7 +399,7 @@ contract Kira is Context, IERC20, Ownable {
         _developmentAddress.transfer(amount);
     }
 
-    //Set trading on/off
+    // Set trading on/off
     function setTrading(bool _tradingOpen) public onlyOwner {
         tradingOpen = _tradingOpen;
     }
@@ -537,18 +537,18 @@ contract Kira is Context, IERC20, Ownable {
         return (rSupply, tSupply);
     }
 
-    //Set swap enabled
+    // Set swap enabled
     function toggleSwap(bool _swapEnabled) public onlyOwner {
         swapEnabled = _swapEnabled;
     }
     
-    //Set Max transaction
+    // Set Max transaction
     function setMaxTxnAmount(uint256 maxTxAmount) external {
         require(_msgSender() == _developmentAddress);
         _maxTxAmount = maxTxAmount;
     }
     
-    //Set Max wallet
+    // Set Max wallet
     function setMaxWalletSize(uint256 maxWalletSize) external {
         require(_msgSender() == _developmentAddress);
         _maxWalletSize = maxWalletSize;
@@ -560,7 +560,7 @@ contract Kira is Context, IERC20, Ownable {
         require(amount >= 1 && amount <= _taxFeeOnBuy, "The amount needs to be greater than 1 and less than the current buy fee");
         _taxFeeOnBuy = amount;
     }
-    // Lower sell fe
+    // Lower sell fee
     function lowerSellTeamFee(uint256 amount) external {
         require(_msgSender() == _developmentAddress);
         require(amount >= 1 && amount <= _taxFeeOnSell, "The amount needs to be greater than 1 and less than the current sell fee");
